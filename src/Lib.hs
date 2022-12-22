@@ -71,18 +71,18 @@ parseCoAuthorXml txt =
   case parseLBS def txt of
     Left e -> Left (ParseError (show e))
     Right (Document prologue root epilogue) ->
-      let cai = parseCoAuthorInfo root
-      in maybeToRight (ParseError "could not parse CoAuthorInfo") cai
+      let coAuthorInfo = parseCoAuthorInfo root
+      in maybeToRight (ParseError "could not parse CoAuthorInfo") coAuthorInfo
 
 parseCoAuthorInfo :: Element -> Maybe CoAuthorInfo
 parseCoAuthorInfo root@(Element _ _ children) = do
   author <- parseAuthorPersonInfo root
   coAuthors <- sequence . filter isJust . map (getElementFromNode >=> parseCoAuthorPersonInfo) $ children
-  let cai = CoAuthorInfo {
-              person = author,
-              coAuthors = coAuthors
-            }
-  return cai
+  let coAuthorInfo = CoAuthorInfo {
+                       person = author,
+                       coAuthors = coAuthors
+                     }
+  return coAuthorInfo
 
 parseAuthorPersonInfo :: Element -> Maybe PersonInfo
 parseAuthorPersonInfo (Element _ attrs _) = do
