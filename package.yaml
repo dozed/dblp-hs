@@ -36,7 +36,10 @@ library:
   source-dirs: src
   dependencies:
   - bytestring
+  - containers
+  - either
   - http-conduit
+  - text
   - xml-conduit
 
 executables:
@@ -59,6 +62,8 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
+    - bytestring
     - hspec
     - raw-strings-qq
+    - text
     - dblp-hs

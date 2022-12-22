@@ -33,7 +33,10 @@ library
   build-depends:
       base >=4.7 && <5
     , bytestring
+    , containers
+    , either
     , http-conduit
+    , text
     , xml-conduit
   default-language: Haskell2010
 
@@ -59,7 +62,9 @@ test-suite dblp-hs-test
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       base >=4.7 && <5
+    , bytestring
     , dblp-hs
     , hspec
     , raw-strings-qq
+    , text
   default-language: Haskell2010
