@@ -32,7 +32,9 @@ library
   ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates -Wincomplete-uni-patterns -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints
   build-depends:
       base >=4.7 && <5
+    , bytestring
     , http-conduit
+    , xml-conduit
   default-language: Haskell2010
 
 executable dblp-hs-exe
@@ -58,4 +60,6 @@ test-suite dblp-hs-test
   build-depends:
       base >=4.7 && <5
     , dblp-hs
+    , hspec
+    , raw-strings-qq
   default-language: Haskell2010

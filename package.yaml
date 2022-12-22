@@ -35,7 +35,9 @@ ghc-options:
 library:
   source-dirs: src
   dependencies:
+  - bytestring
   - http-conduit
+  - xml-conduit
 
 executables:
   dblp-hs-exe:
@@ -57,4 +59,6 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
+    - hspec
+    - raw-strings-qq
     - dblp-hs
