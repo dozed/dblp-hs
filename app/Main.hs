@@ -6,7 +6,7 @@ import Lib
 
 main :: IO ()
 main = do
-  coAuthorInfo <- fetchCoAuthorInfo "m/McCallum:Andrew"
+  coAuthorInfo <- fetchCoAuthorInfo $ UrlPt "m/McCallum:Andrew"
   
   case coAuthorInfo of
     Left e -> fail $ show e

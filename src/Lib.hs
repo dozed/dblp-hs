@@ -7,7 +7,8 @@ module Lib
       lbsToString,
       mkCoAuthorXmlApiUrl,
       CoAuthorInfo(..),
-      PersonInfo(..)
+      PersonInfo(..),
+      UrlPt(..)
     ) where
 
 import Control.Exception (Exception)
@@ -52,10 +53,12 @@ getContentFromNode :: Node -> Maybe Text
 getContentFromNode (NodeContent txt) = Just txt
 getContentFromNode _ = Nothing
 
-mkCoAuthorXmlApiUrl :: String -> String
-mkCoAuthorXmlApiUrl urlpt = "https://dblp.org/rec/pers/" <> urlpt <> "/xc"
+newtype UrlPt = UrlPt { unUrlPt :: String }
 
-fetchCoAuthorInfo :: String -> IO (Either DblpException CoAuthorInfo)
+mkCoAuthorXmlApiUrl :: UrlPt -> String
+mkCoAuthorXmlApiUrl (UrlPt urlpt) = "https://dblp.org/rec/pers/" <> urlpt <> "/xc"
+
+fetchCoAuthorInfo :: UrlPt -> IO (Either DblpException CoAuthorInfo)
 fetchCoAuthorInfo urlpt = do
   let url = mkCoAuthorXmlApiUrl urlpt
   req <- parseRequest url

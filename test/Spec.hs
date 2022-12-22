@@ -29,7 +29,7 @@ main :: IO ()
 main = hspec $ do
   describe "mkCoAuthorXmlApiUrl" $ do
     it "should create a valid co-author xml api url" $ do
-      mkCoAuthorXmlApiUrl "m/McCallum:Andrew" `shouldBe` "https://dblp.org/rec/pers/m/McCallum:Andrew/xc"
+      mkCoAuthorXmlApiUrl (UrlPt "m/McCallum:Andrew") `shouldBe` "https://dblp.org/rec/pers/m/McCallum:Andrew/xc"
   
   describe "parseCoAuthorXml" $ do
     it "should parse co-author xml" $ do
