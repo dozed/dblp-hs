@@ -1,11 +1,9 @@
 {-# LANGUAGE OverloadedStrings #-}
 
-module Lib
+module DblpCoAuthorApi
     ( fetchCoAuthorInfo,
       parseCoAuthorXml,
       parseCoAuthorXml',
-      stringToLBS,
-      lbsToString,
       mkCoAuthorXmlApiUrl,
       DblpError(..),
       CoAuthorInfo(..),
@@ -13,23 +11,18 @@ module Lib
       UrlPt(..)
     ) where
 
-import Control.Exception (Exception)
 import qualified Data.ByteString.Lazy as LBS
 import Data.Either.Combinators (maybeToRight)
 import qualified Data.Map as M
 import Data.Maybe (isJust)
 import Data.Text (Text)
 import qualified Data.Text as T
-import qualified Data.Text.Lazy as TL
-import qualified Data.Text.Lazy.Encoding as TL
-import Network.HTTP.Simple
+import Network.HTTP.Client (parseRequest)
+import Network.HTTP.Simple (httpLBS, getResponseBody)
 import Text.XML
 import Text.XML.Cursor
 
-data DblpError = ParseError String
-  deriving (Eq, Show)
-
-instance Exception DblpError
+import Types
 
 data PersonInfo = PersonInfo {
   name :: Text,
@@ -41,12 +34,6 @@ data CoAuthorInfo = CoAuthorInfo {
   author :: PersonInfo,
   coAuthors :: [PersonInfo]
 } deriving (Eq, Show)
-
-stringToLBS :: String -> LBS.ByteString
-stringToLBS = TL.encodeUtf8 . TL.pack
-
-lbsToString :: LBS.ByteString -> String
-lbsToString = TL.unpack . TL.decodeUtf8
 
 newtype UrlPt = UrlPt { unUrlPt :: String }
 

@@ -2,7 +2,7 @@ module Main (main) where
 
 import Control.Monad (forM_)
 
-import Lib
+import DblpCoAuthorApi
 
 main :: IO ()
 main = do

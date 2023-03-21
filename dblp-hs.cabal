@@ -24,7 +24,11 @@ source-repository head
 
 library
   exposed-modules:
-      Lib
+      DblpCoAuthorApi
+      DblpOrcidApi
+      DblpXml
+      Types
+      Util
   other-modules:
       Paths_dblp_hs
   hs-source-dirs:
@@ -35,8 +39,14 @@ library
     , bytestring
     , containers
     , either
+    , hexml
+    , http-client
     , http-conduit
+    , http-types
+    , pcre-heavy
+    , safe
     , text
+    , xeno
     , xml-conduit
   default-language: Haskell2010
 
@@ -56,6 +66,8 @@ test-suite dblp-hs-test
   type: exitcode-stdio-1.0
   main-is: Spec.hs
   other-modules:
+      DblpCoAuthorApiSpec
+      DblpOrcidApiSpec
       Paths_dblp_hs
   hs-source-dirs:
       test

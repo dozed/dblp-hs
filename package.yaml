@@ -38,8 +38,14 @@ library:
   - bytestring
   - containers
   - either
+  - hexml
+  - http-client
   - http-conduit
+  - http-types
+  - pcre-heavy
+  - safe
   - text
+  - xeno
   - xml-conduit
 
 executables:
